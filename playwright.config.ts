@@ -1,11 +1,11 @@
 import { defineConfig, devices } from '@playwright/test';
-import baseEnvUrl from './utils/environmentBaseUrl';
+import baseEnvUrl from './utils/environmentBaseUrl.js';
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-require('dotenv').config();
+import 'dotenv/config';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -24,7 +24,8 @@ export default defineConfig({
   retries: 2,
 
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  ...(process.env.CI ? { workers: 1 } : {}),
+  //workers: 10, // Testing workers
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
@@ -53,7 +54,7 @@ export default defineConfig({
     // headless: false,
     // ignoreHTTPSErrors: true,
     // viewport: { width: 1280, height: 720 },
-    // video: 'on-first-retry',
+    video: 'on-first-retry',
   },
     // timeout: 30000, //https://playwright.dev/docs/test-timeouts
     // expect: {
@@ -85,6 +86,11 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+    },
+
+    {
+      name: 'edge',
+      use: {...devices['Desktop Edge']},
     },
 
     {
