@@ -48,3 +48,11 @@ test('check Java page', async ({ page }) => {
   await expect(page.getByText(javaDescription)).toBeVisible();
 
 });
+
+test.only('check Python page', async ({page}) => {
+  await page.goto('https://playwright.dev');
+  await page.getByRole('button', {name: 'Node.js'}).hover();
+  await page.getByText('Python', {exact:true}).click();
+  
+  await expect(page).toHaveURL(/.*python/);
+})
