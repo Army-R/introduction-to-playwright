@@ -37,7 +37,7 @@ test.describe('New Todo', () => {
     await checkNumberOfTodosInLocalStorage(page, 2);
   });
 
-  test('should clear text input field when an item is added', async ({ page }) => {
+  test('@sanity should clear text input field when an item is added', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
@@ -50,7 +50,7 @@ test.describe('New Todo', () => {
     await checkNumberOfTodosInLocalStorage(page, 1);
   });
 
-  test('should append new items to the bottom of the list', async ({ page }) => {
+  test('@sanity should append new items to the bottom of the list', async ({ page }) => {
     // Create 3 items.
     await createDefaultTodos(page);
 
@@ -69,7 +69,7 @@ test.describe('New Todo', () => {
   });
 });
 
-test.describe('Mark all as completed', () => {
+test.describe('@sanity Mark all as completed', () => {
   test.beforeEach(async ({ page }) => {
     await createDefaultTodos(page);
     await checkNumberOfTodosInLocalStorage(page, 3);
@@ -88,7 +88,7 @@ test.describe('Mark all as completed', () => {
     await checkNumberOfCompletedTodosInLocalStorage(page, 3);
   });
 
-  test('should allow me to clear the complete state of all items', async ({ page }) => {
+  test('@sanity should allow me to clear the complete state of all items', async ({ page }) => {
     const toggleAll = page.getByLabel('Mark all as complete');
     // Check and then immediately uncheck.
     await toggleAll.check();
@@ -146,7 +146,7 @@ test.describe('Item', () => {
     await expect(secondTodo).toHaveClass('completed');
   });
 
-  test('should allow me to un-mark items as complete', async ({ page }) => {
+  test('@sanity should allow me to un-mark items as complete', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
@@ -171,7 +171,7 @@ test.describe('Item', () => {
     await checkNumberOfCompletedTodosInLocalStorage(page, 0);
   });
 
-  test('should allow me to edit an item', async ({ page }) => {
+  test('@sanity should allow me to edit an item', async ({ page }) => {
     await createDefaultTodos(page);
 
     const todoItems = page.getByTestId('todo-item');
@@ -207,7 +207,7 @@ test.describe('@smoke - Editing', () => {
     await checkNumberOfTodosInLocalStorage(page, 3);
   });
 
-  test('should save edits on blur', async ({ page }) => {
+  test('@sanity should save edits on blur', async ({ page }) => {
     const todoItems = page.getByTestId('todo-item');
     await todoItems.nth(1).dblclick();
     await todoItems.nth(1).getByRole('textbox', { name: 'Edit' }).fill('buy some sausages');
@@ -221,7 +221,7 @@ test.describe('@smoke - Editing', () => {
     await checkTodosInLocalStorage(page, 'buy some sausages');
   });
 
-  test('should trim entered text', async ({ page }) => {
+  test('@sanity should trim entered text', async ({ page }) => {
     const todoItems = page.getByTestId('todo-item');
     await todoItems.nth(1).dblclick();
     await todoItems.nth(1).getByRole('textbox', { name: 'Edit' }).fill('    buy some sausages    ');
