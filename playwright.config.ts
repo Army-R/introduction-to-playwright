@@ -53,7 +53,7 @@ export default defineConfig({
     // headless: false,
     // ignoreHTTPSErrors: true,
     // viewport: { width: 1280, height: 720 },
-    // video: 'on-first-retry',
+    video: 'on-first-retry',
   },
     // timeout: 30000, //https://playwright.dev/docs/test-timeouts
     // expect: {
