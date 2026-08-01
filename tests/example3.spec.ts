@@ -1,0 +1,19 @@
+import test from '@playwright/test';
+import {SearchPage} from '../pages/search-page';
+
+const URL = 'https://playwright.dev/';
+let searchPage: SearchPage;
+
+test.beforeEach(async ({page}) => {
+    await page.goto(URL);
+    searchPage = new SearchPage(page);
+});
+
+test.describe('Playwright website search', () => {
+    test('click search button', async () => {
+        // Act
+        await searchPage.clickSearchButton();
+        // Assert
+        await searchPage.assertSearchModal();
+    })
+})
