@@ -10,10 +10,18 @@ test.beforeEach(async ({page}) => {
 });
 
 test.describe('Playwright website search', () => {
-    test('click search button', async () => {
-        // Act
+    test('search test case', async () => {
+       
         await searchPage.clickSearchButton();
-        // Assert
-        await searchPage.assertSearchModal();
+       
+        await searchPage.searchActions();
+
+        //await searchPage.pressEnter();
+
+        //await searchPage.assertActionsSearch();
     })
+})
+
+test.afterEach(async () => {
+    await searchPage.docSearchInput.clear();
 })
