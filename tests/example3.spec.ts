@@ -16,9 +16,7 @@ test.describe('Playwright website search', () => {
        
         await searchPage.searchActions();
 
-        //await searchPage.pressEnter();
-
-        //await searchPage.assertActionsSearch();
+        await searchPage.assertSearch();
     })
 })
 
