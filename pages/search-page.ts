@@ -24,7 +24,7 @@ export class SearchPage {
 
     async assertSearch() {
         await this.docSearchInput.press('Enter');
-        await expect(this.page).toHaveURL('/docs/input')
+        await expect(this.page).toHaveURL('https://playwright.dev/docs/input')
     }
 }
 
