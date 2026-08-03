@@ -13,13 +13,9 @@ test.describe('Playwright website search', () => {
     test('search test case', async () => {
        
         await searchPage.clickSearchButton();
-       
+
         await searchPage.searchActions();
 
         await searchPage.assertSearch();
     })
-})
-
-test.afterEach(async () => {
-    await searchPage.docSearchInput.clear();
 })
